@@ -22,7 +22,6 @@ public class UsernameValidator {
             return false;
         }
 
-        //bello sto regex
         if(needsNumbersAndChars && !userName.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$")) {
             return false;
         }
