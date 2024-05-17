@@ -6,4 +6,4 @@ Per l'homework n.2 verrà usata la classe UsernameValidator contenente un metodo
 rispetta i seguenti requisiti:
   - Rispetto della lunghezza minima inserita;
   - Rispetto della lunghezza massima inserita;
-  - Lo username deve essere formato da numeri, lettere e da eventuali carratteri speciali;
+  - Lo username deve essere formato da numeri, lettere ed eventuali carratteri speciali;
