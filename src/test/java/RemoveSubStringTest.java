@@ -40,7 +40,7 @@ public class RemoveSubStringTest {
 
     @Test
     public void testSubstringPresentMultipleTimes() {
-        Assertions.assertEquals("Testtest", remove.removeSubString("Testtesttest", "test"));
+        Assertions.assertEquals("testtest", remove.removeSubString("testtesttest", "test"));
     }
 
     @Test
