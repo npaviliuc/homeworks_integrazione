@@ -33,7 +33,15 @@ public class RemoveSubStringTest {
         Assertions.assertEquals("Come andiamo?", remove.removeSubString("Come andiamo?", ""));
     }
 
+    @Test
+    public void testStringEqualsToSubstring() {
+        Assertions.assertEquals("", remove.removeSubString("Sono felice che il test funzioni", "Sono felice che il test funzioni"));
+    }
 
+    @Test
+    public void testSubstringPresentMultipleTimes() {
+        Assertions.assertEquals("Testtest", remove.removeSubString("Testtesttest", "test"));
+    }
 
     @Test
     public void testSubstringWithNumber() {
