@@ -32,4 +32,11 @@ public class RemoveSubStringTest {
     public void testSubstringEmpty() {
         Assertions.assertEquals("Come andiamo?", remove.removeSubString("Come andiamo?", ""));
     }
+
+
+
+    @Test
+    public void testSubstringWithNumber() {
+        Assertions.assertEquals("abcdef", remove.removeSubString("abcdef", "a1c2e3"));
+    }
 }
