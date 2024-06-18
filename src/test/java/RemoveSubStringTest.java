@@ -68,8 +68,8 @@ public class RemoveSubStringTest {
 
     // Esecuzione T12
     @Test
-    public void testSubstringPresentMultipleTimes() {
-        Assertions.assertEquals("testtest", remove.removeSubString("testtesttest", "test"));
+    public void testSubstringGreaterThanString() {
+        Assertions.assertEquals("Substring not found!", remove.removeSubString("Ehilà", "Come va?"));
     }
 
     // Esecuzione T13
@@ -88,5 +88,11 @@ public class RemoveSubStringTest {
     @Test
     public void testSubstringWithSpaces() {
         Assertions.assertEquals("Tuttobene", remove.removeSubString("Tutto bene", " "));
+    }
+
+    // Esecuzione T16
+    @Test
+    public void testSubstringPresentMultipleTimes() {
+        Assertions.assertEquals("testtest", remove.removeSubString("testtesttest", "test"));
     }
 }
