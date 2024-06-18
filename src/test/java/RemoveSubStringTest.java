@@ -37,6 +37,16 @@ public class RemoveSubStringTest {
 
     @Test
     public void testSubstringWithNumber() {
-        Assertions.assertEquals("abcdef", remove.removeSubString("abcdef", "a1c2e3"));
+        Assertions.assertEquals("Mancano  persone", remove.removeSubString("Mancano 10 persone", "10"));
+    }
+
+    @Test
+    public void testSubstringWithSpecialCharacter() {
+        Assertions.assertEquals("Piacere mio", remove.removeSubString("Piacere mio!", "!"));
+    }
+
+    @Test
+    public void testSubstringWithSpaces() {
+        Assertions.assertEquals("Tuttobene", remove.removeSubString("Tutto bene", " "));
     }
 }
