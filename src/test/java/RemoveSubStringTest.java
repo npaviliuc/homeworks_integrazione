@@ -69,7 +69,7 @@ public class RemoveSubStringTest {
     // Esecuzione T12
     @Test
     public void testSubstringGreaterThanString() {
-        Assertions.assertEquals("Substring not found!", remove.removeSubString("Ehilà", "Come va?"));
+        Assertions.assertEquals("Substring not found!", remove.removeSubString("Ehilà", "Ehilàboh"));
     }
 
     // Esecuzione T13
