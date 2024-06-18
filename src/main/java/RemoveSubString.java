@@ -5,6 +5,10 @@ public class RemoveSubString {
             throw new IllegalArgumentException("String and subString must not be null");
         }
 
+        if (subString.isEmpty()) {
+            return string;
+        }
+
         StringBuilder newString = new StringBuilder(string);
         int subStringLength = subString.length();
         int c = 0, y = 0, counter = 0;
