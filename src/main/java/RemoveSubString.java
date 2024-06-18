@@ -1,6 +1,14 @@
 public class RemoveSubString {
 
     public String removeSubString(String string, String subString) {
+        if (string == null || subString == null) {
+            throw new IllegalArgumentException("String and subString must not be null");
+        }
+
+        if (string.isEmpty() || subString.isEmpty()) {
+            return "Your string or subString is empty!";
+        }
+
         StringBuilder newString = new StringBuilder(string);
         int subStringLength = subString.length();
         int c = 0, y = 0, counter = 0;
