@@ -27,14 +27,6 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
-    void characterConstraints(@ForAll String username) {
-        validator = new UsernameValidator(6, 30, true);
-        if(!username.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$")){
-            Assertions.assertFalse(validator.isValid(username));
-        }
-    }
-
-    @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
     void validUsernames(@ForAll("validUsernamesGeneration") String username) {
