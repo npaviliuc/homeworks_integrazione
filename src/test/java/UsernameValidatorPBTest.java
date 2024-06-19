@@ -7,7 +7,7 @@ public class UsernameValidatorPBTest {
     private UsernameValidator validator = null;
 
     @Provide
-    Arbitrary<String> validUsernames() {
+    Arbitrary<String> validUsernamesGeneration() {
         return Arbitraries.strings()
                 .withCharRange('a','z')
                 .withCharRange('A','Z')
@@ -18,7 +18,7 @@ public class UsernameValidatorPBTest {
     }
 
     @Provide
-    Arbitrary<String> invalidUsernames() {
+    Arbitrary<String> invalidUsernamesGeneration() {
         return Arbitraries.strings()
                 .filter(s -> s.length() < 6 || s.length() > 30 || !s.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$"));
     }
@@ -32,12 +32,12 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
-    void validUsernames(@ForAll("validUsernames") String username) {
+    void validUsernames(@ForAll("validUsernamesGeneration") String username) {
         validator = new UsernameValidator(6, 30, true);
         Assertions.assertTrue(validator.isValid(username));
     }
 
-    @Property
+    @Example
     void notNullNotEmpty() {
         validator = new UsernameValidator(6,30,true);
         Assertions.assertFalse(validator.isValid(null));
@@ -57,7 +57,7 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
-    void invalidUsernames(@ForAll("invalidUsernames") String username) {
+    void invalidUsernames(@ForAll("invalidUsernamesGeneration") String username) {
        validator = new UsernameValidator(6, 30, true);
        Assertions.assertFalse(validator.isValid(username));
     }
