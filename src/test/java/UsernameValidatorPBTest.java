@@ -1,5 +1,8 @@
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.statistics.Histogram;
+import net.jqwik.api.statistics.Statistics;
+import net.jqwik.api.statistics.StatisticsReport;
 import org.junit.jupiter.api.Assertions;
 
 public class UsernameValidatorPBTest {
@@ -32,9 +35,13 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
     void validUsernames(@ForAll("validUsernamesGeneration") String username) {
         validator = new UsernameValidator(6, 30, true);
         Assertions.assertTrue(validator.isValid(username));
+
+        Statistics.collect("Length of valid usernames", username.length());
     }
 
     @Example
@@ -57,8 +64,11 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
+    @StatisticsReport(format = Histogram.class)
     void invalidUsernames(@ForAll("invalidUsernamesGeneration") String username) {
        validator = new UsernameValidator(6, 30, true);
        Assertions.assertFalse(validator.isValid(username));
+
+       Statistics.collect("Length of invalid usernames", username.length());
     }
 }
