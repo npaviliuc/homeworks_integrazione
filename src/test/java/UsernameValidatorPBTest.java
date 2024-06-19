@@ -1,10 +1,10 @@
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.IntRange;
 import org.junit.jupiter.api.Assertions;
 
 public class UsernameValidatorPBTest {
 
     private UsernameValidator validator = null;
-
 
     @Provide
     Arbitrary<String> validUsernames() {
@@ -35,6 +35,24 @@ public class UsernameValidatorPBTest {
     void validUsernames(@ForAll("validUsernames") String username) {
         validator = new UsernameValidator(6, 30, true);
         Assertions.assertTrue(validator.isValid(username));
+    }
+
+    void notNullNotEmpty() {
+        validator = new UsernameValidator(6,30,true);
+        Assertions.assertFalse(validator.isValid(null));
+        Assertions.assertFalse(validator.isValid(""));
+    }
+
+    @Property
+    void acceptableLengths(@ForAll @IntRange(min = 1, max = 5) int shortLength,
+                          @ForAll @IntRange(min = 31, max = 40) int longLength) {
+        validator = new UsernameValidator(6, 30, true);
+
+        String userShort = "o".repeat(shortLength);
+        String userLong = "o".repeat(longLength);
+
+        Assertions.assertFalse(validator.isValid(userShort));
+        Assertions.assertFalse(validator.isValid(userLong));
     }
 
     @Property
