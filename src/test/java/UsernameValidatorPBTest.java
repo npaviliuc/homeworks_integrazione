@@ -37,6 +37,7 @@ public class UsernameValidatorPBTest {
         Assertions.assertTrue(validator.isValid(username));
     }
 
+    @Property
     void notNullNotEmpty() {
         validator = new UsernameValidator(6,30,true);
         Assertions.assertFalse(validator.isValid(null));
