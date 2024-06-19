@@ -1,7 +1,5 @@
-import net.jqwik.*;
-import net.jqwik.api.Arbitraries;
-import net.jqwik.api.Arbitrary;
-import net.jqwik.api.Provide;
+import net.jqwik.api.*;
+import org.junit.jupiter.api.Assertions;
 
 public class UsernameValidatorPBTest {
 
@@ -25,6 +23,23 @@ public class UsernameValidatorPBTest {
                 .filter(s -> s.length() < 6 || s.length() > 30 || !s.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$"));
     }
 
+    @Property
+    void characterConstraints(@ForAll String username) {
+        validator = new UsernameValidator(6, 30, true);
+        if(!username.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$")){
+            Assertions.assertFalse(validator.isValid(username));
+        }
+    }
 
+    @Property
+    void validUsernames(@ForAll("validUsernames") String username) {
+        validator = new UsernameValidator(6, 30, true);
+        Assertions.assertTrue(validator.isValid(username));
+    }
 
+    @Property
+    void invalidUsernames(@ForAll("invalidUsernames") String username) {
+       validator = new UsernameValidator(6, 30, true);
+       Assertions.assertFalse(validator.isValid(username));
+    }
 }
