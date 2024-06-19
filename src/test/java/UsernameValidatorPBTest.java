@@ -1,7 +1,6 @@
-import net.jqwik.*;
-import net.jqwik.api.Arbitraries;
-import net.jqwik.api.Arbitrary;
-import net.jqwik.api.Provide;
+import net.jqwik.api.*;
+import net.jqwik.api.constraints.IntRange;
+import org.junit.jupiter.api.Assertions;
 
 public class UsernameValidatorPBTest {
 
@@ -25,6 +24,23 @@ public class UsernameValidatorPBTest {
                 .filter(s -> s.length() < 6 || s.length() > 30 || !s.matches("^[a-zA-Z0-9_\\-.@#$%^&+=]*$"));
     }
 
+    @Property
+    void notNullNotEmpty() {
+        validator = new UsernameValidator(6,30,true);
+        Assertions.assertFalse(validator.isValid(null));
+        Assertions.assertFalse(validator.isValid(""));
+    }
 
+    @Property
+    void acceptableLengths(@ForAll @IntRange(min = 1, max = 5) int shortLength,
+                          @ForAll @IntRange(min = 31, max = 40) int longLength) {
+        validator = new UsernameValidator(6, 30, true);
+
+        String userShort = "o".repeat(shortLength);
+        String userLong = "o".repeat(longLength);
+
+        Assertions.assertFalse(validator.isValid(userShort));
+        Assertions.assertFalse(validator.isValid(userLong));
+    }
 
 }
