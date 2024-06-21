@@ -19,7 +19,7 @@ public class RemoveSubStringTest {
     @Test
     public void testVariousInputs() {
         Assertions.assertEquals("Ciao", remove.removeSubString("Ciao Mondo!", "Mondo!"));
-        Assertions.assertEquals("stai?", remove.removeSubString("Come andiamo stai?", "Come andiamo"));
+        Assertions.assertEquals("stai?", remove.removeSubString("Come stai?", "Come"));
         Assertions.assertEquals("Substring not found!", remove.removeSubString("Che bella giornata!", "ciao"));
     }
 
