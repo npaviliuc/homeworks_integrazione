@@ -36,7 +36,7 @@ public class RemoveSubString {
 
         if(found) {
             newString.delete(c - y, c);
-            return newString.toString();
+            return newString.toString().trim();
         } else {
             return "Substring not found!";
         }

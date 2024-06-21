@@ -15,6 +15,14 @@ public class RemoveSubStringTest {
         remove = new RemoveSubString();
     }
 
+    // Prove per testare gli input
+    @Test
+    public void testVariousInputs() {
+        Assertions.assertEquals("Ciao", remove.removeSubString("Ciao Mondo!", "Mondo!"));
+        Assertions.assertEquals("stai?", remove.removeSubString("Come andiamo stai?", "Come andiamo"));
+        Assertions.assertEquals("Substring not found!", remove.removeSubString("Che bella giornata!", "ciao"));
+    }
+
     // Esecuzione T1
     @Test
     public void testStringNull() {
