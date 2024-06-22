@@ -56,6 +56,7 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
+    @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
     void invalidUsernames(@ForAll("invalidUsernamesGeneration") String username) {
        validator = new UsernameValidator(6, 30, true);
