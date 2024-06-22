@@ -44,6 +44,7 @@ public class UsernameValidatorPBTest {
     }
 
     @Property
+    @Report(Reporting.GENERATED)
     void acceptableLengths(@ForAll @IntRange(min = 1, max = 5) int shortLength,
                           @ForAll @IntRange(min = 31, max = 40) int longLength) {
         validator = new UsernameValidator(6, 30, true);
